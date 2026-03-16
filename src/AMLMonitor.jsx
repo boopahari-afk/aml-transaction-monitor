@@ -66,7 +66,7 @@ const td={padding:"5px 10px",borderBottom:"1px solid #eeeff3",verticalAlign:"mid
 const rc=(s)=>s>=75?"#c62828":s>=50?"#e65100":"#2e7d32";
 
 async function callAI(prompt) {
-  const res = await fetch("http://shortline.proxy.rlwy.net:16708", {
+  const res = await fetch("https://shortline.proxy.rlwy.net:16708", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
