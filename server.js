@@ -11,12 +11,13 @@ const server = http.createServer((req, res) => {
     try {
       const parsed = JSON.parse(body);
       const { apiKey, messages } = parsed;
+      const groqKey = process.env.GROQ_API_KEY || apiKey;
       const payload = JSON.stringify({ model: "llama-3.3-70b-versatile", messages: messages, max_tokens: 1000, temperature: 0.3 });
       const options = {
         hostname: 'api.groq.com',
         path: '/openai/v1/chat/completions',
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${apiKey}`, 'Content-Length': Buffer.byteLength(payload) }
+        headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${groqKey}`, 'Content-Length': Buffer.byteLength(payload) }
       };
       const proxyReq = https.request(options, proxyRes => {
         let data = '';
