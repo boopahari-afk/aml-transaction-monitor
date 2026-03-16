@@ -1,3 +1,25 @@
+## How It Works
+```mermaid
+flowchart TD
+    A[Transaction Input\nManual or Synthetic] --> B[Risk Scoring Engine\n10 AML Rules]
+    B --> C{Score Threshold}
+    C -->|75-100| D[🔴 FLAGGED]
+    C -->|50-74| E[🟡 REVIEW]
+    C -->|0-49| F[🟢 CLEAR]
+    B --> G[Flags Triggered\nStructuring · Large Cash\nPEP · Shell Co · Crypto\nHigh Risk Jurisdiction]
+    D --> H[✦ AI Analyst\nGroq LLaMA 3.3 70B]
+    E --> H
+    H --> I{Verdict}
+    I -->|Suspicious| J[FREEZE / FILE SAR]
+    I -->|Review Required| K[ENHANCED DD]
+    I -->|Legitimate| L[CLEAR]
+    J --> M[SAR Generator\nFinCEN Format]
+    B --> N[Customer Profiler]
+    B --> O[Analytics Dashboard]
+```
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
